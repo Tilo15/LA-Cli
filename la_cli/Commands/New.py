@@ -40,7 +40,7 @@ def new(name, namespace):
     app = open("{0}/__main__.py".format(name), 'w')
 
     # Save the data
-    app.write(APP_TEMPLATE.replace("MyApplication", name))
+    app.write(APP_TEMPLATE.replace("MyApplicationNamespace", namespace).replace("MyApplication", name))
     app.close()
 
 

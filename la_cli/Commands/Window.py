@@ -1,4 +1,4 @@
-from la_cli.Commands import command
+from la_cli.Commands import command, assert_in_project
 import click
 
 import os
@@ -25,6 +25,15 @@ def new_window(path, name):
     glade.write(GLADE_TEMPLATE.replace("MyWindow", name))
     glade.close()
 
+@command
+@click.argument("name")
+def window(name):
+    # Only run if we are in a project
+    assert_in_project("create a new window")
+
+    # Create the view in the default place
+    new_window("Views", name)
+
 
 PYTHON_TEMPLATE = """
 from LibApplication.View.Window import WindowView
@@ -47,8 +56,7 @@ class MyWindow:
 
 """
 
-GLADE_TEMPLATE = """
-<?xml version="1.0" encoding="UTF-8"?>
+GLADE_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkWindow" id="MyWindow">
