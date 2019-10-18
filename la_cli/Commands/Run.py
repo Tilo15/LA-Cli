@@ -1,4 +1,5 @@
 from la_cli.Commands import command
+from la_cli.Util import GetApp
 import click
 
 import os
@@ -15,4 +16,8 @@ def run():
     up = os.path.dirname(working_dir)
 
     # Run program
-    os.system("cd {0}; python3 -m {1}".format(up, app))
+    #os.system("cd {0}; python3 -m {1}".format(up, app))
+
+    app = GetApp.get_app()
+    app()
+
