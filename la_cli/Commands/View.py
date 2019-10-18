@@ -36,11 +36,11 @@ def view(name):
 
 
 PYTHON_TEMPLATE = """
-from LibApplication.View.Window import WindowView
+from LibApplication.View.Window import View
 from LibApplication.View.Binding import Binding, FormattedBinding
 from LibApplication.Stock.Services.Application import ApplicationService
 
-@WindowView("MyView.glade", "MyView")
+@View("MyView.glade", "MyView")
 class MyView:
 
     application_service = ApplicationService
