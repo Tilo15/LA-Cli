@@ -3,6 +3,7 @@ from la_cli.Util import GetApp
 
 from LibApplication.Stock.Services.Data import DataService
 from LibApplication.Stock.Views.DataWindow import DataWindow
+from LibApplication.Stock.Views.MessageBox import MessageBox
 
 import click
 
@@ -16,6 +17,9 @@ def browse():
 
     # Declare the data window variable
     data_window = None
+
+    def error(exception):
+        MessageBox("Unable to retreive data", "The database may not be initialised, or there may not be a root object to inspect.").show_modal(data_window)
 
     # Extend the app to run the data viewer instead of the main window
     class viewer_app(app):
@@ -36,7 +40,7 @@ def browse():
 
             print("ready")
             # Query data service for root object
-            DataService.get_instance().get().subscribe(data_window.set_root)
+            DataService.get_instance().get().subscribe(data_window.set_root, error)
 
 
     # Run the app
