@@ -37,7 +37,7 @@ def window(name):
 
 PYTHON_TEMPLATE = """
 from LibApplication.View.Window import WindowView
-from LibApplication.View.Binding import Binding, FormattedBinding
+from LibApplication.View.Binding import Binding
 from LibApplication.Stock.Services.Application import ApplicationService
 
 @WindowView("MyWindow.glade", "MyWindow")
@@ -50,7 +50,7 @@ class MyWindow:
         self.heading = "MyWindow Works!"
         self.subheading = self.application_service.application.app_info.name
 
-    @FormattedBinding("subtitle", "text")
+    @Binding("subtitle", "text")
     def subheading(self, appname):
         return "MyWindow is a toplevel view in the application {0}".format(appname)
 

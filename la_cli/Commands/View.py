@@ -37,7 +37,7 @@ def view(name):
 
 PYTHON_TEMPLATE = """
 from LibApplication.View.Window import View
-from LibApplication.View.Binding import Binding, FormattedBinding
+from LibApplication.View.Binding import Binding
 from LibApplication.Stock.Services.Application import ApplicationService
 
 @View("MyView.glade", "MyView")
@@ -50,7 +50,7 @@ class MyView:
         self.heading = "MyView Works!"
         self.subheading = self.application_service.application.app_info.name
 
-    @FormattedBinding("subtitle", "text")
+    @Binding("subtitle", "text")
     def subheading(self, appname):
         return "MyView is a view in the application {0}".format(appname)
 
